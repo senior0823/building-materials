@@ -1,27 +1,27 @@
 import { StaticImageData } from 'next/image';
 
-import interestImg1 from '@/public/img/interest-1.jpg';
-import interestImg2 from '@/public/img/interest-2.jpg';
-import interestImg3 from '@/public/img/interest-3.jpg';
-import interestImg4 from '@/public/img/interest-4.jpg';
-import interestImg5 from '@/public/img/interest-5.jpg';
-import interestImg6 from '@/public/img/interest-6.jpg';
-import interestImg7 from '@/public/img/interest-7.jpg';
-import interestImg8 from '@/public/img/interest-8.jpg';
+import interestImg1 from '@/public/img/product/interest-1.jpg';
+import interestImg2 from '@/public/img/product/interest-2.jpg';
+import interestImg3 from '@/public/img/product/interest-3.jpg';
+import interestImg4 from '@/public/img/product/interest-4.jpg';
+import interestImg5 from '@/public/img/product/interest-5.jpg';
+import interestImg6 from '@/public/img/product/interest-6.jpg';
+import interestImg7 from '@/public/img/product/interest-7.jpg';
+import interestImg8 from '@/public/img/product/interest-8.jpg';
 
-import weeklyImg1 from '@/public/img/weekly-1.jpg';
-import weeklyImg2 from '@/public/img/weekly-2.jpg';
-import weeklyImg3 from '@/public/img/weekly-3.jpg';
-import weeklyImg4 from '@/public/img/weekly-4.jpg';
-import weeklyImg5 from '@/public/img/weekly-5.jpg';
-import weeklyImg6 from '@/public/img/weekly-6.jpg';
-import weeklyImg7 from '@/public/img/weekly-7.jpg';
-import weeklyImg8 from '@/public/img/weekly-8.jpg';
-import weeklyImg9 from '@/public/img/weekly-9.jpg';
+import weeklyImg1 from '@/public/img/product/weekly-1.jpg';
+import weeklyImg2 from '@/public/img/product/weekly-2.jpg';
+import weeklyImg3 from '@/public/img/product/weekly-3.jpg';
+import weeklyImg4 from '@/public/img/product/weekly-4.jpg';
+import weeklyImg5 from '@/public/img/product/weekly-5.jpg';
+import weeklyImg6 from '@/public/img/product/weekly-6.jpg';
+import weeklyImg7 from '@/public/img/product/weekly-7.jpg';
+import weeklyImg8 from '@/public/img/product/weekly-8.jpg';
+import weeklyImg9 from '@/public/img/product/weekly-9.jpg';
 
-import recentlyImg1 from '@/public/img/recently-1.jpg';
-import recentlyImg2 from '@/public/img/recently-2.jpg';
-import recentlyImg3 from '@/public/img/recently-3.jpg';
+import recentlyImg1 from '@/public/img/product/recently-1.jpg';
+import recentlyImg2 from '@/public/img/product/recently-2.jpg';
+import recentlyImg3 from '@/public/img/product/recently-3.jpg';
 
 const interestImages: StaticImageData[] = [
     interestImg1,
