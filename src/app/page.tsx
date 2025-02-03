@@ -1,10 +1,13 @@
-import Image from "next/image";
-import Footer from "@/components/Footer"
+import React from "react";
+import { AppProps } from "next/app";
 
-export default function Home() {
+
+const Home = () => {
   return (
     <div>
 
     </div>
   );
 }
+
+export default Home;
