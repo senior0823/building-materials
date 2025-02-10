@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { FaMinus, FaPlus } from "react-icons/fa6";
+import { Button } from "@/components/header/ui/button";
+import { MinusIcon, PlusIcon } from "@radix-ui/react-icons";
+
 import { cn } from "@/lib/utils";
 
 type CartCounterProps = {
@@ -53,7 +54,7 @@ const CartCounter = ({
         className="h-5 w-5 sm:h-6 sm:w-6 text-xl hover:bg-transparent"
         onClick={() => remove()}
       >
-        <FaMinus />
+        <MinusIcon />
       </Button>
       <span className="font-medium text-sm sm:text-base">
         {!isZeroDelete ? counter : initialValue}
@@ -65,7 +66,7 @@ const CartCounter = ({
         className="h-5 w-5 sm:h-6 sm:w-6 text-xl hover:bg-transparent"
         onClick={() => addToCart()}
       >
-        <FaPlus />
+        <PlusIcon />
       </Button>
     </div>
   );
