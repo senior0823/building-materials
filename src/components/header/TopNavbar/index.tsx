@@ -1,6 +1,8 @@
+'use client'
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import React from "react";
+import { useEffect, useState } from "react";
 import { NavMenu } from "../navbar.types";
 import { MenuList } from "./MenuList";
 import {
@@ -22,61 +24,273 @@ const data: NavMenu = [
       {
         id: 11,
         label: "Building Material",
-        url: "/",
-        description: "***",
+        url: "/collections/building-materials",
+        description: `Cladding\n Builders Metalwork\n Precast & Construction Accessories\n Building Boards`,
       },
       {
         id: 12,
-        label: "Cladding",
+        label: "Sheet Materials",
         url: "/",
-        description: "***",
+        description: "OSB Board\n Chipboard\n MDF\n Plywood\n",
       },
       {
         id: 13,
-        label: "Builders Metalwork",
+        label: "Building Membranes",
         url: "/",
-        description: "***",
+        description: "Airtight Membranes\n Roofing Membranes\n Wall Membranes\n",
       },
-      
+      {
+        id: 14,
+        label: "Plasterboard",
+        url: "/",
+        description: "Insulated Plasterboard\n Standard Plasterboard\n Wall Fire Rated Plasterboard\n",
+      },
+      {
+        id: 15,
+        label: "Bricks & Blocks",
+        url: "/",
+        description: "Foil Backed Plasterboard\n Moisture Resistant Plasterboard\n Soundproof Plasterboard\n",
+      },
+      {
+        id: 16,
+        label: "Drainage",
+        url: "/",
+        description: "Airtight Membranes\n Roofing Membranes\n Wall Membranes\n",
+      },
+
     ],
   },
   {
     id: 2,
-    type: "MenuItem",
+    type: "MenuList",
     label: "Roofing",
     url: "/shop#on-sale",
-    children: [],
+    children: [
+      {
+        id: 11,
+        label: "Drainage",
+        url: "/",
+        description: `Underground Drainage\n Linear Drainage\n Manhole Cover\n `,
+      },
+      {
+        id: 12,
+        label: "Sheet Materials",
+        url: "/",
+        description: "Chambers\n Soakaways\n Guttering\n Plywood\n",
+      },
+      {
+        id: 13,
+        label: "Flashing Rolls",
+        url: "/",
+        description: "Underlays\n Slates\n Sealants & Treatments\n",
+      },
+      {
+        id: 14,
+        label: "Plasterboard",
+        url: "/",
+        description: "Fixings & Accessories\n Aluminium Soakers\n Metal Studding and Ceilings\n",
+      },
+      {
+        id: 15,
+        label: "Metal Studding",
+        url: "/",
+        description: "MF Ceiling\n Suspended Ceiling Gridwork\n Accessories\n",
+      },
+      {
+        id: 16,
+        label: "Free Delivery Products",
+        url: "/",
+        description: "Airtight Membranes\n Roofing Membranes\n Wall Membranes\n",
+      },
+
+    ],
   },
   {
     id: 3,
-    type: "MenuItem",
+    type: "MenuList",
     label: "Lighting",
     url: "/shop#new-arrivals",
-    children: [],
+    children: [
+      {
+        id: 11,
+        label: "Accessories",
+        url: "/",
+        description: `Cladding\n Builders Metalwork\n Precast & Construction Accessories\n Building Boards`,
+      },
+      {
+        id: 12,
+        label: "Suspended Ceiling Gridwork",
+        url: "/",
+        description: "OSB Board\n Chipboard\n MDF\n Plywood\n",
+      },
+      {
+        id: 13,
+        label: "Fixings & Accessories",
+        url: "/",
+        description: "Airtight Membranes\n Roofing Membranes\n Wall Membranes\n",
+      },
+      {
+        id: 14,
+        label: "Sealants & Treatments",
+        url: "/",
+        description: "Insulated Plasterboard\n Standard Plasterboard\n Wall Fire Rated Plasterboard\n",
+      },
+      {
+        id: 15,
+        label: "Sealants & Treatments",
+        url: "/",
+        description: "Foil Backed Plasterboard\n Moisture Resistant Plasterboard\n Soundproof Plasterboard\n",
+      },
+      {
+        id: 16,
+        label: "Slates",
+        url: "/",
+        description: "Airtight Membranes\n Roofing Membranes\n Wall Membranes\n",
+      },
+
+    ],
+
   },
   {
     id: 4,
-    type: "MenuItem",
+    type: "MenuList",
     label: "Tools & Workwear",
     url: "/shop#brands",
-    children: [],
+    children: [
+      {
+        id: 11,
+        label: "Metal Studding and Ceilings",
+        url: "/",
+        description: `Cladding\n Builders Metalwork\n Precast & Construction Accessories\n Building Boards`,
+      },
+      {
+        id: 12,
+        label: "Soakaways",
+        url: "/",
+        description: "OSB Board\n Chipboard\n MDF\n Plywood\n",
+      },
+      {
+        id: 13,
+        label: "Manhole Cover",
+        url: "/",
+        description: "Airtight Membranes\n Roofing Membranes\n Wall Membranes\n",
+      },
+      {
+        id: 14,
+        label: "Manhole Cover",
+        url: "/",
+        description: "Insulated Plasterboard\n Standard Plasterboard\n Wall Fire Rated Plasterboard\n",
+      },
+      {
+        id: 15,
+        label: "Guttering",
+        url: "/",
+        description: "Foil Backed Plasterboard\n Moisture Resistant Plasterboard\n Soundproof Plasterboard\n",
+      },
+      {
+        id: 16,
+        label: "Underground Drainage",
+        url: "/",
+        description: "Airtight Membranes\n Roofing Membranes\n Wall Membranes\n",
+      },
+
+    ],
+
   },
   {
     id: 5,
-    type: "MenuItem",
+    type: "MenuList",
     label: "Outdoor & Gargen",
     url: "/shop#brands",
-    children: [],
+    children: [
+      {
+        id: 11,
+        label: "Linear Drainage",
+        url: "/",
+        description: `Cladding\n Builders Metalwork\n Precast & Construction Accessories\n Building Boards`,
+      },
+      {
+        id: 12,
+        label: "Accessories",
+        url: "/",
+        description: "OSB Board\n Chipboard\n MDF\n Plywood\n",
+      },
+      {
+        id: 13,
+        label: "Building Membranes",
+        url: "/",
+        description: "Airtight Membranes\n Roofing Membranes\n Wall Membranes\n",
+      },
+      {
+        id: 14,
+        label: "",
+        url: "/",
+        description: "Insulated Plasterboard\n Standard Plasterboard\n Wall Fire Rated Plasterboard\n",
+      },
+      {
+        id: 15,
+        label: "Bricks & Blocks",
+        url: "/",
+        description: "Foil Backed Plasterboard\n Moisture Resistant Plasterboard\n Soundproof Plasterboard\n",
+      },
+      {
+        id: 16,
+        label: "Drainage",
+        url: "/",
+        description: "Airtight Membranes\n Roofing Membranes\n Wall Membranes\n",
+      },
+
+    ],
+
   },
   {
     id: 6,
-    type: "MenuItem",
+    type: "MenuList",
     label: "Heating & Plumbing",
     url: "/shop#brands",
-    children: [],
+    children: [
+      {
+        id: 11,
+        label: "Building Material",
+        url: "/",
+        description: `Cladding\n Builders Metalwork\n Precast & Construction Accessories\n Building Boards`,
+      },
+      {
+        id: 12,
+        label: "Sheet Materials",
+        url: "/",
+        description: "OSB Board\n Chipboard\n MDF\n Plywood\n",
+      },
+      {
+        id: 13,
+        label: "Building Membranes",
+        url: "/",
+        description: "Airtight Membranes\n Roofing Membranes\n Wall Membranes\n",
+      },
+      {
+        id: 14,
+        label: "Plasterboard",
+        url: "/",
+        description: "Insulated Plasterboard\n Standard Plasterboard\n Wall Fire Rated Plasterboard\n",
+      },
+      {
+        id: 15,
+        label: "Bricks & Blocks",
+        url: "/",
+        description: "Foil Backed Plasterboard\n Moisture Resistant Plasterboard\n Soundproof Plasterboard\n",
+      },
+      {
+        id: 16,
+        label: "Drainage",
+        url: "/",
+        description: "Airtight Membranes\n Roofing Membranes\n Wall Membranes\n",
+      },
+
+    ],
+
   },
   {
-    id: 4,
+    id: 7,
     type: "MenuItem",
     label: "Doors & Windows",
     url: "/shop#brands",
@@ -85,12 +299,24 @@ const data: NavMenu = [
 ];
 
 const TopNavbar = () => {
+
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 140);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <nav className="sticky top-0 z-20">
-      <div className="flex  md:max-w-frame  justify-between py-2 md:py-2 px-4 xl:px-0 bg-[#034efc] ">
+      <div className="md:flex hidden md:max-w-frame  justify-between py-2 md:py-2 px-4 xl:px-0 bg-[#034efc] ">
         <div className="flex ml-5 text-white/50">
           <Link href="/" id="email" className="ml-5 flex" >
-          <Image
+            <Image
               priority
               src="/icons/email.png"
               height={20}
@@ -100,7 +326,7 @@ const TopNavbar = () => {
             />
           </Link>
           <Link href="/" id="phone" className="ml-5 flex" >
-          <Image
+            <Image
               priority
               src="/icons/phone.svg"
               height={20}
@@ -110,7 +336,7 @@ const TopNavbar = () => {
             />
           </Link>
           <Link href="/" id="whatsapp" className=" ml-5 flex" >
-          <Image
+            <Image
               priority
               src="/icons/whatsapp.svg"
               height={20}
@@ -127,7 +353,11 @@ const TopNavbar = () => {
           <Link href="/" className="ml-5">Contact us</Link>
         </div>
       </div>
-      <div className="flex relative w-100 max-w-frame mx-auto items-center justify-between md:justify-between py-2 md:py-2 px-4 xl:px-0 ">
+      <div className={cn(
+        "flex relative w-100 max-w-frame mx-auto items-center justify-between md:justify-between py-2 md:py-2 px-4 xl:px-0 duration-300",
+        isScrolled ? "md:hidden" : "flex"
+      )}>
+
         <div className="flex items-center">
           <div className="block md:hidden mr-4">
             <ResTopNavbar data={data} />
@@ -140,12 +370,12 @@ const TopNavbar = () => {
               height={60}
               width={100}
               alt="brand"
-              >
-
+              className={cn(isScrolled ? "hidden" : "")}
+            >
             </Image>
           </Link>
         </div>
-       
+
         <InputGroup className="hidden md:flex bg-[#F0F0F0] ml-50 mr-3 lg:mr-10 items-center justify-between md:justify-start max-w-[700px]">
           <InputGroup.Text>
             <Image
@@ -188,22 +418,25 @@ const TopNavbar = () => {
           </Link>
         </div>
       </div>
-        <div className="flex w-100 bg-[#034efc] hidden md:flex  ml-50   min-w-80">
-            <NavigationMenu className="relative max-w-frame mx-auto items-center justify-between md:justify-start">
-            <NavigationMenuList>
-              {data.map((item) => (
-                <React.Fragment key={item.id}>
-                  {item.type === "MenuItem" && (
-                    <MenuItem label={item.label} url={item.url} />
-                  )}
-                  {item.type === "MenuList" && (
-                    <MenuList data={item.children} label={item.label} />
-                  )}
-                </React.Fragment>
-              ))}
-            </NavigationMenuList>
-            </NavigationMenu>
-        </div>
+      <div className={cn(
+        "flex w-full bg-[#034efc] hidden md:flex transition-all duration-300",
+        isScrolled ? "fixed top-0 left-0 w-full shadow-md z-50" : ""
+      )}>
+        <NavigationMenu className="relative max-w-frame mx-auto items-center justify-between md:justify-start">
+          <NavigationMenuList>
+            {data.map((item) => (
+              <React.Fragment key={item.id}>
+                {item.type === "MenuItem" && (
+                  <MenuItem label={item.label} url={item.url} />
+                )}
+                {item.type === "MenuList" && (
+                  <MenuList data={item.children} label={item.label} />
+                )}
+              </React.Fragment>
+            ))}
+          </NavigationMenuList>
+        </NavigationMenu>
+      </div>
     </nav>
   );
 };

@@ -21,7 +21,7 @@ import {
 const ResTopNavbar = ({ data }: { data: NavMenu }) => {
   return (
     <Sheet>
-      <SheetTrigger asChild className="cursor-pointer">
+      <SheetTrigger asChild className="cursor-pointer ">
         <Image
           priority
           src="/icons/menu.svg"
@@ -31,19 +31,19 @@ const ResTopNavbar = ({ data }: { data: NavMenu }) => {
           className="max-w-[22px] max-h-[22px]"
         />
       </SheetTrigger>
-      <SheetContent side="left" className="overflow-y-auto">
+      <SheetContent side="left" className="overflow-y-auto border-none">
         <SheetHeader className="mb-10">
           <SheetTitle asChild>
             <SheetClose asChild>
-              <Link href="/" 
-              className="text-2xl"
+              <Link href="/"
+                className="text-2xl"
               >
                 Material Hub
               </Link>
             </SheetClose>
           </SheetTitle>
         </SheetHeader>
-        <div className="flex flex-col items-start">
+        <div className="flex flex-col items-start ">
           {data.map((item) => (
             <React.Fragment key={item.id}>
               {item.type === "MenuItem" && (
@@ -56,8 +56,8 @@ const ResTopNavbar = ({ data }: { data: NavMenu }) => {
               {item.type === "MenuList" && (
                 <div className="mb-4 w-full">
                   <Accordion type="single" collapsible>
-                    <AccordionItem value={item.label} className="border-none">
-                      <AccordionTrigger className="text-left p-0 py-0.5 font-normal text-base">
+                    <AccordionItem value={item.label} className="">
+                      <AccordionTrigger className="text-left p-0 py-0.5 font-normal text-base text-white">
                         {item.label}
                       </AccordionTrigger>
                       <AccordionContent className="p-4 pb-0 border-l flex flex-col">
@@ -65,7 +65,7 @@ const ResTopNavbar = ({ data }: { data: NavMenu }) => {
                           <SheetClose
                             key={itemChild.id}
                             asChild
-                            className="w-fit py-2 text-base"
+                            className="w-fit py-2 text-base text-white"
                           >
                             <Link href={itemChild.url ?? "/"}>
                               {itemChild.label}

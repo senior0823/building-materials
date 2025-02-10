@@ -22,13 +22,15 @@ export function MenuList({ data, label }: MenuListProps) {
         {label}
       </NavigationMenuTrigger>
       <NavigationMenuContent>
-        <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-          {data.map((item) => (
-            <ListItem key={item.id} title={item.label} href={item.url ?? "/"}>
-              {item.description ?? ""}
-            </ListItem>
-          ))}
-        </ul>
+        <div className="bg-white">
+          <ul className="grid w-[400px] gap-3 p-4 md:w-[800px] md:grid-cols-4 lg:w-[1000px] ">
+            {data.map((item) => (
+              <ListItem key={item.id} title={item.label} href={item.url ?? "/"}>
+                {item.description ?? ""}
+              </ListItem>
+            ))}
+          </ul>
+        </div>
       </NavigationMenuContent>
     </NavigationMenuItem>
   );
@@ -50,7 +52,7 @@ const ListItem = React.forwardRef<
           {...props}
         >
           <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground whitespace-pre-line">
             {children}
           </p>
         </Link>

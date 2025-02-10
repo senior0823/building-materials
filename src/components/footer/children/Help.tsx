@@ -35,11 +35,11 @@ const navLinks: NavSection[] = [
         url: "",
       },
       {
-        title: "insulation4less.co.uk",
+        title: "***",
         url: "",
       },
       {
-        title: "tiles4less.co.uk",
+        title: "***",
         url: "",
       },
     ],
@@ -115,20 +115,20 @@ const Help = () => {
         <h3 className="text-[18px] font-semibold mb-6">Contact Us</h3>
         <p className="text-[15px] text-[#868686]">
           <strong className="text-[#000000]">Phone: </strong>
-          <a href="tel:02034811978">020-3481-1978</a>
+          <a href="tel:02034811978">012-3456-7890</a>
           <br />
           <strong className="text-[#000000]">Email: </strong>
-          <a href="mailto:sales@i4lgroup.co.uk">sales@i4lgroup.co.uk</a>
+          <a href="mailto:sales@i4lgroup.co.uk">example@group.co</a>
           <br />
         </p>
         <p className="text-[15px] text-[#868686]">
-          <strong className="text-[#000000]">Build4Less.co.uk</strong>
+          <strong className="text-[#000000]">example.com</strong>
           <br />
           3rd Floor <br />
-          207 Regent Street <br />
-          London <br />
+          207 *** Street <br />
+          *** <br />
           W1B 3HH <br />
-          England <br />
+          *** <br />
         </p>
       </div>
     </div>

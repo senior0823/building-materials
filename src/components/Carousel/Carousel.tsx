@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './carousel.css';
 
+
 const images = [
   '/images/img1.jpg',
   '/images/img2.jpg',
@@ -44,26 +45,29 @@ const Carousel: React.FC = () => {
   };
 
   return (
-    <div className="carousel-container">
-      <div className="carousel-slide">
-        <img src={images[currentSlide]} alt={`Slide ${currentSlide + 1}`} />
-      </div>
+    <div className="flex justify-center mx-auto my-5">
+      <div className="carousel-container relative">
+        <div className="carousel-slide md:w-[1090px] md:h-[475px] sm:w-[890px] sm:h-[380px]" >
+          <img src={images[currentSlide]} alt={`Slide ${currentSlide + 1}`} className='md:w-[1090px] md:h-[475px] sm:w-[890px] sm:h-[380px]' />
+        </div>
+        <div className='flex justify-center items-center carousel-button-group'>
+          <div className="button-group">
+            <button onClick={prevSlide}><img src='icons/preview_arrow.png' className='w-4' /></button>
+            {images.map((_, index) => (
+              <span
+                key={index}
+                className={`dot ${currentSlide === index ? 'active' : ''}`}
+                onClick={() => goToSlide(index)}
+              />
+            ))}
+            <button onClick={nextSlide}><img src='icons/next_arrow.png' className='w-4' /></button>
+          </div>
 
-      <div className="button-group">
-        <button onClick={prevSlide}>&lt;</button>
-        {images.map((_, index) => (
-          <span
-            key={index}
-            className={`dot ${currentSlide === index ? 'active' : ''}`}
-            onClick={() => goToSlide(index)}
-          />
-        ))}
-        <button onClick={nextSlide}>&gt;</button>
+          <button className="pause-resume-btn" onClick={togglePause}>
+            {isPaused ? <img src='icons/resume_icon.png' className='w-4 ' /> : <img src='/icons/pause_icon.png' className='w-4' />}
+          </button>
+        </div>
       </div>
-
-      <button className="pause-resume-btn" onClick={togglePause}>
-        {isPaused ? '▶' : '⏸'}
-      </button>
     </div>
   );
 };

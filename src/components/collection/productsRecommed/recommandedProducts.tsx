@@ -65,7 +65,7 @@ const RecommandedProducts: React.FC<ProductParams> = ({ title, imageArray, produ
                         aria-label="Previous product"
                         disabled={currentIndex === 0}
                     >
-                        {"<"}
+                        <img src='/icons/preview_arrow.png' className='w-[20px] h-[20px] mx-auto' />
                     </button>
                     <button
                         className={`w-8 h-8 rounded-full bg-gray-500 font-bold hover:bg-black transition duration-200 ${isNextButtonDisabled ? 'opacity-50 cursor-not-allowed' : ''}`}
@@ -73,7 +73,7 @@ const RecommandedProducts: React.FC<ProductParams> = ({ title, imageArray, produ
                         aria-label="Next product"
                         disabled={isNextButtonDisabled}
                     >
-                        {">"}
+                        <img src='/icons/next_arrow.png' className='w-[20px] h-[20px] mx-auto' />
                     </button>
                 </div>
             </div>
