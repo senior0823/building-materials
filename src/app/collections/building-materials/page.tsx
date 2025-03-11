@@ -16,7 +16,7 @@ const Products = [
     url: ""
   },
   {
-    image: "/Products/metal_studding_9a46cda2-5504-4f36-8fff-195467c9cfc9.jpg",
+    image: "/Products/metal_studding_9a46cda2-5504-4f36-8fff-195467c9cfc9.jpg"
     product: "Breather Membrane",
     url: ""
   },
