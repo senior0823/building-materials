@@ -47,8 +47,8 @@ const Carousel: React.FC = () => {
   return (
     <div className="flex justify-center mx-auto my-5">
       <div className="carousel-container relative">
-        <div className="carousel-slide md:w-[1090px] md:h-[475px] sm:w-[890px] sm:h-[380px]" >
-          <img src={images[currentSlide]} alt={`Slide ${currentSlide + 1}`} className='md:w-[1090px] md:h-[475px] sm:w-[890px] sm:h-[380px]' />
+        <div className="carousel-slide md:w-[100vw] md:h-[475px] sm:w-[100vw] sm:h-[380px]" >
+          <img src={images[currentSlide]} alt={`Slide ${currentSlide + 1}`} className='md:w-[100vw] md:h-[475px] sm:w-[100vw] sm:h-[380px]' />
         </div>
         <div className='flex justify-center items-center carousel-button-group'>
           <div className="button-group">

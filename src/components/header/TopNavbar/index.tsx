@@ -354,7 +354,7 @@ const TopNavbar = () => {
         </div>
       </div>
       <div className={cn(
-        "flex relative w-100 max-w-frame mx-auto items-center justify-between md:justify-between py-2 md:py-2 px-4 xl:px-0 duration-300",
+        "flex bg-white relative w-100 max-w-frame mx-auto items-center justify-between md:justify-between py-2 md:py-2 px-4 xl:px-0 duration-300",
         isScrolled ? "md:hidden" : "flex"
       )}>
 
