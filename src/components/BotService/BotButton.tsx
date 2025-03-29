@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Chatbox from './Chatbox';
 const BotButton = () => {
-    const [modal, setModal] = useState(true);
+    const [modal, setModal] = useState(false);
     return (
         <>
             <div className='fixed bottom-16 left-8'
