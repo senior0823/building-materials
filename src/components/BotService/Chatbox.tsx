@@ -18,7 +18,7 @@ const Chatbox = () => {
     };
 
     return (
-        <div className="flex flex-col h-screen bg-gray-100 w-96 h-[500px] relative">
+        <div className="flex flex-col bg-gray-100 w-96 h-[500px] relative">
             <div className="bg-white shadow-md p-4">
 
                 <div className="box-header">
