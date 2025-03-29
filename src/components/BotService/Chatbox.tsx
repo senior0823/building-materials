@@ -3,21 +3,22 @@ import Emoji from './Emoji';
 
 
 const Chatbox = () => {
-    const [message, setMessage] = useState('');
-    const [messages, setMessages] = useState([]);
-    const [emoji, setEmoji] = useState(false);
-    const handleSend = () => {
+    const [message, setMessage] = useState<string>('');
+    const [messages, setMessages] = useState<string[]>([]);
+    const [emoji, setEmoji] = useState<boolean>(false);
+    const handleSend = ():void => {
         if (message.trim()) {
             setMessages([...messages, message]);
             setMessage('');
         }
     };
-    const handleEmojiClick = (emoji) => {
+    const handleEmojiClick = (emoji:string) => {
         setMessage((prev) => prev + emoji);
+        setEmoji(!emoji)
     };
 
     return (
-        <div className="flex flex-col h-screen bg-gray-100 w-96 h-[600px]">
+        <div className="flex flex-col h-screen bg-gray-100 w-96 h-[500px] relative">
             <div className="bg-white shadow-md p-4">
 
                 <div className="box-header">
@@ -36,7 +37,7 @@ const Chatbox = () => {
                     </div>
                 </div>
             </div>
-            <div className="flex-1 p-4 overflow-y-auto relative">
+            <div className="flex-1 p-4 overflow-y-auto">
                 {messages.map((msg, index) => (
                     <div key={index} className="flex items-start mb-4">
                         <div className="mr-2">
@@ -51,9 +52,9 @@ const Chatbox = () => {
                         </div>
                     </div>
                 ))}
-                <div className='absolute inset-x-0 bottom-0 left-0 bg-white duration-500 ease-in-out data-closed:opacity-0' style={{ display: emoji ? "block" : "none" }}>
-                    <Emoji />
-                </div>
+            </div>
+            <div className='absolute inset-x-0 bottom-[70px] left-0 bg-white duration-500 ease-in-out data-closed:opacity-0 cursor-auto' style={{ display: emoji ? "block" : "none" }}>
+                <Emoji handleEmojiClick={handleEmojiClick}/>
             </div>
             <div className="p-2 border-t bg-white flex items-center">
                 <div className="btn btn-simple btn-file fileinput-new relative overflow-hidden ">

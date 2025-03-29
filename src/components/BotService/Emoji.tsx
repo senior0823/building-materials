@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 
-const Emoji = () => {
-    const [selectedEmoji, setSelectedEmoji] = useState('');  
+const Emoji = ({handleEmojiClick}:{handleEmojiClick:Function}) => {
+
     return (
       <div className="margin cursor-pointer">
         {['😁', '😃', '😅', '😆', '😇', '😉', '😂', '🙂', '🙃', '🤣', 
@@ -14,8 +14,8 @@ const Emoji = () => {
           '🐱', '🏠', '🎫', '📞', '💳', '🔒', '🌹'].map((emoji) => (
           <span 
             key={emoji} 
-            onClick={() => setSelectedEmoji(emoji)} 
-            style={{ cursor: 'pointer', padding: '5px' }} // Optional styling
+            onClick={() => handleEmojiClick(emoji)} 
+            style={{ cursor: 'pointer', padding: '5px'}} // Optional styling
           >
             {emoji}
           </span>
