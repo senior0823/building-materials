@@ -1,18 +1,26 @@
 import React, { useState } from 'react';
 import Emoji from './Emoji';
+import { fetchChatGPTResponse } from '@/api/Chatbot';
 
-
-const Chatbox = () => {
+const Chatbox: React.FC = () => {
     const [message, setMessage] = useState<string>('');
-    const [messages, setMessages] = useState<string[]>([]);
+    const [messages, setMessages] = useState<{ msg: string, user: string }[]>([{msg:"Hello! Can I help you?", user : "bot"}]);
     const [emoji, setEmoji] = useState<boolean>(false);
-    const handleSend = ():void => {
+
+    const handleSend = async () => {
+        if (!message) return
         if (message.trim()) {
-            setMessages([...messages, message]);
+            setMessages([...messages, {msg:message,user: "me"}]);
+            try {
+                const response = await fetchChatGPTResponse(message);
+                setMessages([...messages, {msg:response, user: "bot"}]);
+            } catch (error) {
+                console.error("Failed to fetch response:", error);
+            }
             setMessage('');
         }
     };
-    const handleEmojiClick = (emoji:string) => {
+    const handleEmojiClick = (emoji: string) => {
         setMessage((prev) => prev + emoji);
         setEmoji(!emoji)
     };
@@ -39,22 +47,22 @@ const Chatbox = () => {
             </div>
             <div className="flex-1 p-4 overflow-y-auto">
                 {messages.map((msg, index) => (
-                    <div key={index} className="flex items-start mb-4">
-                        <div className="mr-2">
+                    <div key={index} className={`flex ${msg.user=="bot"?"justify-start":"justify-end"} mb-4`}>
+                        {/* <div className="mr-2">me
                             <img
                                 src="https://via.placeholder.com/40" // Replace with user avatar  
                                 alt="User"
                                 className="rounded-full"
                             />
-                        </div>
-                        <div className="bg-green-500 text-white p-3 rounded-lg rounded-br-none">
-                            {msg}
+                        </div> */}
+                        <div className="bg-blue-400 text-white p-3 rounded-lg rounded-br-none">
+                            {msg.msg}
                         </div>
                     </div>
                 ))}
             </div>
             <div className='absolute inset-x-0 bottom-[70px] left-0 bg-white duration-500 ease-in-out data-closed:opacity-0 cursor-auto' style={{ display: emoji ? "block" : "none" }}>
-                <Emoji handleEmojiClick={handleEmojiClick}/>
+                <Emoji handleEmojiClick={handleEmojiClick} />
             </div>
             <div className="p-2 border-t bg-white flex items-center">
                 <div className="btn btn-simple btn-file fileinput-new relative overflow-hidden ">
@@ -75,10 +83,11 @@ const Chatbox = () => {
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     className="border rounded-md p-2 flex-1 h-14 resize-none"
+                    onKeyUp={(e)=>{if(e.key=="Enter"){ e.preventDefault(); handleSend(); setMessage('');}}}
                 />
                 <button
                     onClick={handleSend}
-                    className="bg-green-500 text-white rounded-md p-2 ml-2 hover:bg-green-600"
+                    className="bg-blue-500 text-white rounded-md p-2 ml-2 hover:bg-blue-600"
                 >
                     Send
                 </button>
