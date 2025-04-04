@@ -3,7 +3,7 @@ import axios from "axios";
 const API_URL = "https://api.openai.com/v1/chat/completions";;
  
 export const fetchChatGPTResponse = async (messages: string): Promise<string> => {
-    console.log(process.env.NEXT_PUBLIC_OPENAI_API_KEY);
+    // console.log(process.env.NEXT_PUBLIC_OPENAI_API_KEY);
     
     try {
         const response = await axios.post(

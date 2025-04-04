@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
+import React, { HTMLInputTypeAttribute, useState } from 'react';
 import Emoji from './Emoji';
 import { fetchChatGPTResponse } from '@/api/Chatbot';
 
 const Chatbox: React.FC = () => {
     const [message, setMessage] = useState<string>('');
-    const [messages, setMessages] = useState<{ msg: string, user: string }[]>([{msg:"Hello! Can I help you?", user : "bot"}]);
+    const [messages, setMessages] = useState<{ msg: string, user: string, file: string }[]>([{ msg: "Hello! Can I help you?", user: "bot", file: "none" }]);
     const [emoji, setEmoji] = useState<boolean>(false);
 
     const handleSend = async () => {
         if (!message) return
         if (message.trim()) {
-            setMessages([...messages, {msg:message,user: "me"}]);
+            setMessages([...messages, { msg: message, user: "me", file: "none" }]);
             try {
                 const response = await fetchChatGPTResponse(message);
-                setMessages([...messages, {msg:response, user: "bot"}]);
+                setMessages([...messages, { msg: response, user: "bot", file: "none" }]);
             } catch (error) {
                 console.error("Failed to fetch response:", error);
             }
@@ -24,7 +24,10 @@ const Chatbox: React.FC = () => {
         setMessage((prev) => prev + emoji);
         setEmoji(!emoji)
     };
-
+    const handlefile = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (file) setMessage(file.name);
+    }
     return (
         <div className="flex flex-col bg-gray-100 w-96 h-[500px] relative">
             <div className="bg-white shadow-md p-4">
@@ -47,17 +50,13 @@ const Chatbox: React.FC = () => {
             </div>
             <div className="flex-1 p-4 overflow-y-auto">
                 {messages.map((msg, index) => (
-                    <div key={index} className={`flex ${msg.user=="bot"?"justify-start":"justify-end"} mb-4`}>
-                        {/* <div className="mr-2">me
-                            <img
-                                src="https://via.placeholder.com/40" // Replace with user avatar  
-                                alt="User"
-                                className="rounded-full"
-                            />
-                        </div> */}
+                    <div key={index} className={`flex ${msg.user == "bot" ? "justify-start" : "justify-end"} mb-4`}>
                         <div className="bg-blue-400 text-white p-3 rounded-lg rounded-br-none">
                             {msg.msg}
                         </div>
+                        {/* <div>
+                            {msg.}
+                        </div> */}
                     </div>
                 ))}
             </div>
@@ -71,7 +70,7 @@ const Chatbox: React.FC = () => {
                             <path d="M16.5 6v11.5c0 2.21-1.79 4-4 4s-4-1.79-4-4V5c0-1.38 1.12-2.5 2.5-2.5s2.5 1.12 2.5 2.5v10.5c0 .55-.45 1-1 1s-1-.45-1-1V6H10v9.5c0 1.38 1.12 2.5 2.5 2.5s2.5-1.12 2.5-2.5V5c0-2.21-1.79-4-4-4S7 2.79 7 5v12.5c0 3.04 2.46 5.5 5.5 5.5s5.5-2.46 5.5-5.5V6h-1.5z"></path>
                         </svg>
                     </span>
-                    <input className='absolute top-0 right-0 w-full h-full m-0 text-[23px] cursor-pointer opacity-0 direction-ltr' id="upload-input" type="file" name="uploads[]" />
+                    <input type="file" onChange={handlefile} className='absolute top-0 right-0 w-full h-full m-0 text-[23px] cursor-pointer opacity-0 direction-ltr' id="upload-input" name="uploads[]" />
                 </div>
                 <div className='mr-2' onClick={() => setEmoji(!emoji)}>
                     <svg fill="#bababa" height="24" viewBox="0 0 22 22" width="22" xmlns="http://www.w3.org/2000/svg">
@@ -83,7 +82,7 @@ const Chatbox: React.FC = () => {
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     className="border rounded-md p-2 flex-1 h-14 resize-none"
-                    onKeyUp={(e)=>{if(e.key=="Enter"){ e.preventDefault(); handleSend(); setMessage('');}}}
+                    onKeyUp={(e) => { if (e.key == "Enter") { e.preventDefault(); handleSend(); setMessage(''); } }}
                 />
                 <button
                     onClick={handleSend}
