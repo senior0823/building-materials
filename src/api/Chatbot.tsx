@@ -10,7 +10,9 @@ export const fetchChatGPTResponse = async (messages: string): Promise<string> =>
             API_URL,
             {
                 model: 'gpt-4-turbo',
-                messages: messages,
+                messages: [
+                    { role: "user", content: messages } // Wrap the string in a message object
+                ],
                 temperature: 0.7,
             },
             {
