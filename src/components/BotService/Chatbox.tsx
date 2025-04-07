@@ -4,20 +4,31 @@ import { fetchChatGPTResponse } from '@/api/Chatbot';
 
 const Chatbox: React.FC = () => {
     const [message, setMessage] = useState<string>('');
-    const [messages, setMessages] = useState<{ msg: string, user: string, file: string }[]>([{ msg: "Hello! Can I help you?", user: "bot", file: "none" }]);
+    const [messages, setMessages] = useState<{ msg: string, user: string }[]>([{msg:"Hello! Can I help you?", user : "bot"}]);
     const [emoji, setEmoji] = useState<boolean>(false);
 
     const handleSend = async () => {
-        if (!message) return
+        if (!message) return;
+    
         if (message.trim()) {
-            setMessages([...messages, { msg: message, user: "me", file: "none" }]);
+            // Use functional updates to get the latest state
+            setMessages(prevMessages => {
+                const updatedMessages = [...prevMessages, { msg: message, user: "me" }];
+                return updatedMessages; // Return the updated state
+            });
+    
             try {
                 const response = await fetchChatGPTResponse(message);
-                setMessages([...messages, { msg: response, user: "bot", file: "none" }]);
+                // Update messages with the bot's response
+                setMessages(prevMessages => [
+                    ...prevMessages,
+                    { msg: response, user: "bot" }
+                ]);
             } catch (error) {
                 console.error("Failed to fetch response:", error);
             }
-            setMessage('');
+    
+            setMessage(''); // Clear the input field
         }
     };
     const handleEmojiClick = (emoji: string) => {
